@@ -15,26 +15,17 @@ public class AirCurrent : MonoBehaviour
     private bool isPlayerInCurrent = false; 
     private int currentPathIndex = 0; 
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
-            if (playerRb != null)
-            {
-                Vector2 directionToEntry = (entryPoint.position - other.transform.position).normalized;
-                playerRb.linearVelocity = directionToEntry * suctionForce;
-            }
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
+
             if (playerRb != null && !isPlayerInCurrent)
             {
+                Vector2 directionToEntry = (entryPoint.position - other.transform.position).normalized;
+                playerRb.linearVelocity = directionToEntry * suctionForce;
+
                 if (Vector2.Distance(other.transform.position, entryPoint.position) < 0.5f)
                 {
                     isPlayerInCurrent = true;
@@ -50,7 +41,7 @@ public class AirCurrent : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInCurrent = false;
-            currentPathIndex = 0; 
+            currentPathIndex = 0;
         }
     }
 
