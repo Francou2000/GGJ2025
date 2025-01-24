@@ -29,7 +29,8 @@ public class AirCurrent : MonoBehaviour
                 if (Vector2.Distance(other.transform.position, entryPoint.position) < 0.5f)
                 {
                     isPlayerInCurrent = true;
-                    playerRb.linearVelocity = Vector2.zero; 
+                    playerRb.linearVelocity = Vector2.zero;
+                    other.GetComponent<BubbleMovement>().canMove = false;
                     StartCoroutine(TransportPlayer(other.transform, playerRb));
                 }
             }
@@ -40,6 +41,7 @@ public class AirCurrent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            other.GetComponent<BubbleMovement>().canMove = true;
             isPlayerInCurrent = false;
             currentPathIndex = 0;
         }
@@ -49,6 +51,7 @@ public class AirCurrent : MonoBehaviour
     {
         while (isPlayerInCurrent && currentPathIndex < pathPoints.Length)
         {
+            
             Vector2 targetPosition = pathPoints[currentPathIndex].position;
             Vector2 direction = (targetPosition - (Vector2)player.position).normalized;
 
