@@ -808,7 +808,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -835,6 +835,8 @@ MonoBehaviour:
   moveForce: 10
   maxSpeed: 5
   moveDelay: 0
+  interval: 0.1
+  erraticForce: 0.4
   canMove: 0
 --- !u!212 &1256648952
 SpriteRenderer:
@@ -957,6 +959,7 @@ MonoBehaviour:
   maxLives: 3
   firstRegenTime: 4
   regenSpeedup: 2
+  currentLives: 0
 --- !u!1 &1400640431
 GameObject:
   m_ObjectHideFlags: 0
