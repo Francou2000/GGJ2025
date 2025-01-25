@@ -34,4 +34,13 @@ public static class SaveSystem
         }
         else return null;
     }
+
+    public static void DeleteAllData()
+    {
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+            Debug.Log("Data deleted");
+        }
+    }
 }

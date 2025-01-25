@@ -13,7 +13,24 @@ public class GameManager : MonoBehaviour
         else Instance = this;
     }
 
-    private void Start() { for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); } }
+    private void Start() 
+    {
+        if (SaveSystem.LoadGame() != null)
+        {
+            SaveData loadedData = SaveSystem.LoadGame();
+            if (loadedData != null)
+            {
+                playerLifes = loadedData.lives;
+                elapsedTime = loadedData.time;
+                player.transform.position = loadedData.GetPosition();
+                UIManager.Instance.RestartBounds(playerLifes);
+            }
+        }
+        else 
+        {
+            for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); }
+        }
+    }
 
     private void Update() { elapsedTime += Time.deltaTime; }
 
