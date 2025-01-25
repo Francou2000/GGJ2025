@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private float playerLife;
+    [SerializeField] private float playerLifes;
     private float elapsedTime = 0f;
 
     private void Awake()
@@ -16,7 +16,14 @@ public class GameManager : MonoBehaviour
 
     public string GetElapsedTime() { return string.Format("{0:00}:{1:00}", Mathf.FloorToInt(elapsedTime / 60), Mathf.FloorToInt(elapsedTime % 60)); }
 
-    public void AddDeath(int quantity) { playerLife += quantity; }
+    public void AddDeath(int quantity) 
+    {
+        playerLifes -= quantity; 
+        if (playerLifes <= 0)
+        {
+            //Activar modo facil
+        }
+    }
 
 
 }
