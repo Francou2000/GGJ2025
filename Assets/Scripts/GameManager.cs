@@ -12,13 +12,16 @@ public class GameManager : MonoBehaviour
         else Instance = this;
     }
 
-    private void Update() { elapsedTime += Time.deltaTime; Debug.Log(GetElapsedTime()); }
+    private void Start() { for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); } }
+
+    private void Update() { elapsedTime += Time.deltaTime;}
 
     public string GetElapsedTime() { return string.Format("{0:00}:{1:00}", Mathf.FloorToInt(elapsedTime / 60), Mathf.FloorToInt(elapsedTime % 60)); }
 
     public void AddDeath(int quantity) 
     {
         playerLifes -= quantity; 
+        UIManager.Instance.RemoveBounds();
         if (playerLifes <= 0)
         {
             //Activar modo facil
