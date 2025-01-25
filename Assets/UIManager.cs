@@ -31,4 +31,16 @@ public class UIManager : MonoBehaviour
         GameObject newBound = Instantiate(bounceSpritePrefab, bouncesContainer.transform);
         bouncesSprites.Add(newBound);
     }
+
+    public void RestartBounds(int lifes)
+    {
+        foreach (GameObject bound in bouncesSprites) { Destroy(bound); }
+        bouncesSprites.Clear();
+
+        for (int i = 0; i < lifes; i++)
+        {
+            GameObject newBound = Instantiate(bounceSpritePrefab, bouncesContainer.transform);
+            bouncesSprites.Add(newBound);
+        }
+    }
 }
