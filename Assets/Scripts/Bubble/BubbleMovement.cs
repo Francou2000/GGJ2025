@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BubbleMovement : MonoBehaviour
 {
@@ -39,5 +40,10 @@ public class BubbleMovement : MonoBehaviour
                 lastMoveTime = Time.time;
             }
         }
+    }
+
+    public void bounce()
+    {
+
     }
 }
