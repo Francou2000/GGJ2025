@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     private void Start() 
     {
+        Time.timeScale = 1f;
+
         if (SaveSystem.LoadGame() != null)
         {
             SaveData loadedData = SaveSystem.LoadGame();
