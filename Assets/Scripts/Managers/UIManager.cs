@@ -5,16 +5,39 @@ using System.Collections.Generic;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private List<GameObject> bouncesSprites;
-    [SerializeField] private GameObject bounceSpritePrefab, bouncesContainer;
+    [SerializeField] private GameObject bouncesContainer, canvas;
+    [Header("Prefabs")]
+    [SerializeField] private GameObject bounceSpritePrefab, pausePanelPrefab;
+    private GameObject pausePanelInstance;
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
     }
 
-    private void Update() { timerText.text = GameManager.Instance.GetElapsedTime(); }
+    private void Update() 
+    { 
+        timerText.text = GameManager.Instance.GetElapsedTime();
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) { PauseMenu(); }
+    }
+
+    public void PauseMenu()
+    {
+        if (pausePanelInstance == null)
+        {
+            pausePanelInstance = Instantiate(pausePanelPrefab, canvas.transform);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Destroy(pausePanelInstance);
+            pausePanelInstance = null;
+            Time.timeScale = 1f;
+        }
+    }
 
     public void RemoveBounds()
     {
@@ -43,4 +66,6 @@ public class UIManager : MonoBehaviour
             bouncesSprites.Add(newBound);
         }
     }
+
+    public void LoadLevelByName(string name) { LoadScenesUtils.LoadSceneByName(name); }
 }
