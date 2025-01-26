@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDie() 
     {
         SaveData loadedData = SaveSystem.LoadGame();
+        LevelData levelData = SaveSystem.LoadLevel();
         if (loadedData != null)
         {
             playerLifes = loadedData.lives;
@@ -58,7 +59,11 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.RestartBounds(playerLifes);
             player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
         }
-        else { UIManager.Instance.EasyPanel(); }
+        else 
+        { 
+            if (levelData != null && levelData.chickenMode) LoadScenesUtils.ReLoadLevel();
+            else UIManager.Instance.EasyPanel();
+        }
     }
 
     public void OnVictory()
