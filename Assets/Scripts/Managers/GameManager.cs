@@ -25,9 +25,14 @@ public class GameManager : MonoBehaviour
                 elapsedTime = loadedData.time;
                 player.transform.position = loadedData.GetPosition();
                 UIManager.Instance.RestartBounds(playerLifes);
+                player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
             }
         }
-        else { for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); } }
+        else 
+        { 
+            for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); }
+            player.GetComponent<BubbleLives>().AddLife(playerLifes);
+        }
     }
 
     private void Update() { elapsedTime += Time.deltaTime; }
@@ -51,6 +56,7 @@ public class GameManager : MonoBehaviour
             elapsedTime = loadedData.time;
             player.transform.position = loadedData.GetPosition();
             UIManager.Instance.RestartBounds(playerLifes);
+            player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
         }
         else { LoadScenesUtils.ReLoadLevel(); }
     }
@@ -59,11 +65,5 @@ public class GameManager : MonoBehaviour
     {
         playerLifes -= quantity; 
         UIManager.Instance.RemoveBounds();
-        if (playerLifes <= 0)
-        {
-            //Activar modo facil
-        }
     }
-
-
 }

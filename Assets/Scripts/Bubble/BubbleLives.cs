@@ -13,21 +13,14 @@ public class BubbleLives : MonoBehaviour
 
     private BubbleMovement bubbleMovement;
 
-    void Start()
-    {
-        currentLives = maxLives;
-        bubbleMovement = GetComponent<BubbleMovement>();
-    }
+    void Start() { bubbleMovement = GetComponent<BubbleMovement>(); }
 
     void Update()
     {
         if (isRegenerating)
         {
             regenTimer -= Time.deltaTime;
-            if (regenTimer <= 0f && currentLives < maxLives)
-            {
-                RegenerateLife();
-            }
+            if (regenTimer <= 0f && currentLives < maxLives) { RegenerateLife(); }
         }
     }
 
@@ -46,16 +39,13 @@ public class BubbleLives : MonoBehaviour
         {
             currentLives--;
 
+            GameManager.Instance.AddDeath(1);
+
             bubbleMovement.bounce();
 
             StartRegeneration();
 
-            if (currentLives <= 0)
-            {
-                GameManager.Instance.AddDeath(1);
-
-                GameManager.Instance.OnPlayerDie();
-            }
+            if (currentLives <= 0) { GameManager.Instance.OnPlayerDie(); }
         }
     }
 
@@ -65,23 +55,17 @@ public class BubbleLives : MonoBehaviour
         regenTimer = firstRegenTime; 
     }
 
-    private void StopRegeneration()
-    {
-        isRegenerating = false;
-    }
+    private void StopRegeneration() { isRegenerating = false; }
 
     private void RegenerateLife()
     {
         if (currentLives < maxLives)
         {
             currentLives++;
-
             regenTimer = Mathf.Max(0.5f, regenTimer - regenSpeedup);
         }
-
-        if (currentLives == maxLives)
-        {
-            StopRegeneration();
-        }
+        if (currentLives == maxLives) { StopRegeneration(); }
     }
+
+    public void AddLife(int quanity) { currentLives += quanity; }
 }
