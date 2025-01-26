@@ -8,10 +8,13 @@ public class BubbleMovement : MonoBehaviour
     [SerializeField] private float moveDelay = 0.5f;
     [SerializeField] private float interval = 0.2f;
     [SerializeField] private float erraticForce = 3f;
+    [SerializeField] private float enableDelay = 2f;
 
     private Rigidbody2D rb;
     private float lastMoveTime;
     public bool canMove = true;
+
+    private Vector2 bounceDirection;
 
     void Start()
     {
@@ -56,7 +59,7 @@ public class BubbleMovement : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
 
-            if (canMove)
+            if (canMove == true || canMove == false)
             {
                 Vector2 randomDirection = GetRandomDirection();
                 rb.AddForce(randomDirection * erraticForce, ForceMode2D.Impulse);
@@ -87,8 +90,20 @@ public class BubbleMovement : MonoBehaviour
         return directions[randomIndex];
     }
 
-    public void bounce()
+    public void bounce(Vector2 collisionPosition)
     {
+        canMove = false;
         
+        bounceDirection = (transform.position - (Vector3)collisionPosition).normalized;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(bounceDirection * moveForce, ForceMode2D.Impulse);
+
+        Invoke(nameof(EnableMovement), enableDelay);
+    }
+
+    private void EnableMovement()
+    {
+        canMove = true;
     }
 }
