@@ -10,8 +10,9 @@ public class MainMenu : MonoBehaviour
         if (SaveSystem.LoadLevel() != null && SaveSystem.LoadLevel().chickenMode)
         {
             easyGameButton.gameObject.SetActive(true);
-            if (SaveSystem.LoadGame() != null) loadGameButton.gameObject.SetActive(true);
-            else loadGameButton.gameObject.SetActive(false);
+            loadGameButton.gameObject.SetActive(true);
+            if (SaveSystem.LoadGame() != null) loadGameButton.interactable = true;
+            else loadGameButton.interactable = false;
         }
         else
         {

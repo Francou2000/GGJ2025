@@ -31,7 +31,6 @@ public class BubbleLives : MonoBehaviour
         if (collision.gameObject.tag == "Cactus" || collision.gameObject.tag == "Surface")
         {
             LoseLife();
-            Debug.Log("Colisiono");
             collisionPosition = collision.transform.position;
         }
     }
