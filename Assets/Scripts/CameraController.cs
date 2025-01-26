@@ -2,17 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player; 
-    [SerializeField] private Vector2 screenSize = new Vector2(16, 9); 
-    [SerializeField] private float smoothSpeed = 0.125f; 
-    [SerializeField] private Vector2 screenOffset; 
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector2 screenSize = new Vector2(16, 9);
+    [SerializeField] private float smoothSpeed = 0.125f;
+    [SerializeField] private Vector2 screenOffset;
 
-    private Vector2 currentScreenCenter; 
-
-    void Start()
-    {
-        UpdateCurrentScreen();
-    }
+    private Vector2 currentScreenCenter;
 
     void LateUpdate()
     {
@@ -29,13 +24,30 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void UpdateCurrentScreen(Vector2? newPlayerPosition = null)
+    private void UpdateCurrentScreen(Vector2 playerPosition)
     {
-        Vector2 position = newPlayerPosition ?? player.position;
+        float halfWidth = screenSize.x / 2;
+        float halfHeight = screenSize.y / 2;
 
-        float screenX = Mathf.Floor(position.x / screenSize.x) * screenSize.x;
-        float screenY = Mathf.Floor(position.y / screenSize.y) * screenSize.y;
-        currentScreenCenter = new Vector2(screenX, screenY) + screenSize / 2 + screenOffset;
+        if (playerPosition.x > currentScreenCenter.x + halfWidth)
+        {
+            currentScreenCenter.x += screenSize.x;
+        }
+        else if (playerPosition.x < currentScreenCenter.x - halfWidth)
+        {
+            currentScreenCenter.x -= screenSize.x;
+        }
+
+        if (playerPosition.y > currentScreenCenter.y + halfHeight)
+        {
+            currentScreenCenter.y += screenSize.y;
+        }
+        else if (playerPosition.y < currentScreenCenter.y - halfHeight)
+        {
+            currentScreenCenter.y -= screenSize.y;
+        }
+
+        currentScreenCenter += screenOffset;
     }
 
     private bool IsPlayerWithinCurrentScreen(Vector2 playerPosition)
@@ -47,5 +59,23 @@ public class CameraController : MonoBehaviour
                playerPosition.x <= currentScreenCenter.x + halfWidth &&
                playerPosition.y >= currentScreenCenter.y - halfHeight &&
                playerPosition.y <= currentScreenCenter.y + halfHeight;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (screenSize == Vector2.zero) return;
+
+        Gizmos.color = Color.green;
+        for (float x = -100; x <= 100; x += screenSize.x)
+        {
+            Gizmos.DrawLine(new Vector3(x, -100, 0), new Vector3(x, 100, 0));
+        }
+        for (float y = -100; y <= 100; y += screenSize.y)
+        {
+            Gizmos.DrawLine(new Vector3(-100, y, 0), new Vector3(100, y, 0));
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector3(currentScreenCenter.x, currentScreenCenter.y, 0), new Vector3(screenSize.x, screenSize.y, 0));
     }
 }

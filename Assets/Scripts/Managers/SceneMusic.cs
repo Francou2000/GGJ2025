@@ -11,7 +11,7 @@ public class SceneMusic : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
 
-        if (currentScene == "Nombre de la escena del menu")
+        if (currentScene == "MainMenu")
         {
             AudioManager.Instance.PlayMusic(menuMusic);
         }
