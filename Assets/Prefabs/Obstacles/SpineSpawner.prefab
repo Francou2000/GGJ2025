@@ -137,3 +137,4 @@ MonoBehaviour:
   spawnFrequency: 1
   spineSpeed: 5
   initialOffset: 0
+  effectClip: {fileID: 8300000, guid: 749fe6a4761ad5942bb4381668bfdb2c, type: 3}
