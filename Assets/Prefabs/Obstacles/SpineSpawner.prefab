@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 241409742822911733}
   - component: {fileID: 7806718283702556238}
   - component: {fileID: 715210136044597113}
+  - component: {fileID: 4016393296292818593}
   m_Layer: 0
   m_Name: SpineSpawner
   m_TagString: Untagged
@@ -138,3 +139,39 @@ MonoBehaviour:
   spineSpeed: 5
   initialOffset: 0
   effectClip: {fileID: 8300000, guid: 749fe6a4761ad5942bb4381668bfdb2c, type: 3}
+--- !u!58 &4016393296292818593
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942401468743334452}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 7

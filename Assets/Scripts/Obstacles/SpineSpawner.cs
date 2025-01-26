@@ -10,11 +10,13 @@ public class SpineSpawner : MonoBehaviour
     [SerializeField] private float initialOffset = 0f;
     [SerializeField] private AudioClip effectClip;
 
-    private float timer; 
+    private float timer;
+    private bool canShoot = false;
 
     void Start()
     {
         timer = initialOffset;
+        canShoot = false;
     }
 
     void Update()
@@ -28,17 +30,36 @@ public class SpineSpawner : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canShoot = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canShoot = false;
+        }
+    }
+
     private void SpawnSpine()
     {
-        GameObject spine = Instantiate(spinePrefab, spawnPoint.position, Quaternion.identity);
-        AudioManager.Instance.PlaySFX(effectClip);
-
-        Rigidbody2D rb = spine.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (canShoot)
         {
-            rb.linearVelocity = Vector2.down * spineSpeed; 
-        }
+            GameObject spine = Instantiate(spinePrefab, spawnPoint.position, Quaternion.identity);
+            AudioManager.Instance.PlaySFX(effectClip);
 
-        Destroy(spine, 2f);
+            Rigidbody2D rb = spine.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.down * spineSpeed;
+            }
+
+            Destroy(spine, 2f);
+        }
     }
 }
