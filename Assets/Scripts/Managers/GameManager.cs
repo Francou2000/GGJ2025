@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private void Start() 
     {
         Time.timeScale = 1f;
-
         if (SaveSystem.LoadGame() != null)
         {
             SaveData loadedData = SaveSystem.LoadGame();
@@ -28,10 +27,7 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.RestartBounds(playerLifes);
             }
         }
-        else 
-        {
-            for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); }
-        }
+        else { for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); } }
     }
 
     private void Update() { elapsedTime += Time.deltaTime; }
@@ -56,6 +52,7 @@ public class GameManager : MonoBehaviour
             player.transform.position = loadedData.GetPosition();
             UIManager.Instance.RestartBounds(playerLifes);
         }
+        else { LoadScenesUtils.ReLoadLevel(); }
     }
 
     public void AddDeath(int quantity) 
