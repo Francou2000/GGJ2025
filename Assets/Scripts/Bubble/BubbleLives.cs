@@ -26,11 +26,7 @@ public class BubbleLives : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Cactus") || collision.CompareTag("Surface"))
-        {
-            LoseLife();
-            Debug.Log("Colisiono");
-        }
+        if (collision.CompareTag("Cactus") || collision.CompareTag("Surface")) { LoseLife(); }
     }
 
     private void LoseLife()

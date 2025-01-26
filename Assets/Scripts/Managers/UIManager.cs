@@ -10,8 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> bouncesSprites;
     [SerializeField] private GameObject bouncesContainer, canvas;
     [Header("Prefabs")]
-    [SerializeField] private GameObject bounceSpritePrefab, pausePanelPrefab;
+    [SerializeField] private GameObject bounceSpritePrefab, pausePanelPrefab, easyPanelPrefab;
     private GameObject pausePanelInstance;
+    private GameObject easyPanelInstance;
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -35,6 +36,21 @@ public class UIManager : MonoBehaviour
         {
             Destroy(pausePanelInstance);
             pausePanelInstance = null;
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void EasyPanel()
+    {
+        if (easyPanelInstance == null)
+        {
+            easyPanelInstance = Instantiate(easyPanelPrefab, canvas.transform);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Destroy(easyPanelInstance);
+            easyPanelInstance = null;
             Time.timeScale = 1f;
         }
     }

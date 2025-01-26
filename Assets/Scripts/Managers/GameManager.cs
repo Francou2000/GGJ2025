@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.RestartBounds(playerLifes);
             player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
         }
-        else { LoadScenesUtils.ReLoadLevel(); }
+        else { UIManager.Instance.EasyPanel(); }
     }
 
     public void AddDeath(int quantity) 

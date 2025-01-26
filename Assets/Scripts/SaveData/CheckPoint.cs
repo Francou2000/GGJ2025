@@ -7,6 +7,7 @@ public class CheckPoint : MonoBehaviour
         if (collision.gameObject == GameManager.Instance.GetPlayer())
         {
             SaveSystem.SaveGame(GameManager.Instance.GetPlayerLifes(), GameManager.Instance.GetTime(), GameManager.Instance.GetPlayer().transform.position);
+            SaveSystem.SaveLevel(true);
             Destroy(gameObject);
         }
     }
