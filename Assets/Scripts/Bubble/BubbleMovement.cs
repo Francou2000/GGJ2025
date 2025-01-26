@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class BubbleMovement : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class BubbleMovement : MonoBehaviour
     public bool canMove = true;
 
     private Vector2 bounceDirection;
-    [SerializeField] private float repellentForce = 2f;
+    [SerializeField] private float repellentForce = 10f;
+
+    private Vector2 currentBubbleForce;
+    [SerializeField] private float resistanceCoefficent = 1.2f;
 
     void Start()
     {
@@ -25,10 +29,10 @@ public class BubbleMovement : MonoBehaviour
 
         StartCoroutine(ErraticMovement());
     }
-
     private void FixedUpdate()
     {
         Move();
+        AirResistance();
     }
 
     private void Move()
@@ -97,7 +101,8 @@ public class BubbleMovement : MonoBehaviour
         
         bounceDirection = (transform.position - (Vector3)collisionPosition).normalized;
 
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity *= 0.5f;
+        
         rb.AddForce(bounceDirection * repellentForce, ForceMode2D.Impulse);
 
         Invoke(nameof(EnableMovement), enableDelay);
@@ -106,5 +111,15 @@ public class BubbleMovement : MonoBehaviour
     private void EnableMovement()
     {
         canMove = true;
+    }
+
+    private void AirResistance()
+    {
+        float actualSpeed = rb.linearVelocity.magnitude;
+
+        if (actualSpeed > 0)
+        {
+            rb.linearDamping = actualSpeed + resistanceCoefficent;
+        }
     }
 }

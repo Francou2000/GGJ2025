@@ -1366,6 +1366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 8900436397736863715, guid: 166904ccb3ea0844882a6eed6bc2ccee, type: 3}
+      propertyPath: repellentForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
