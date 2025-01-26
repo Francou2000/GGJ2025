@@ -10,14 +10,10 @@ public class AirCurrent : MonoBehaviour
     [Header("Suction Settings")]
     [SerializeField] private float suctionForce = 10f; 
     [SerializeField] private Transform entryPoint; 
-    [SerializeField] private Transform exitPoint;
-
-    [Header("Sound Effects")]
-    [SerializeField] private AudioClip airCurrentSound;
+    [SerializeField] private Transform exitPoint; 
 
     private bool isPlayerInCurrent = false; 
-    private int currentPathIndex = 0;
-    private bool playingSound = false;
+    private int currentPathIndex = 0; 
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -29,12 +25,6 @@ public class AirCurrent : MonoBehaviour
             {
                 Vector2 directionToEntry = (entryPoint.position - other.transform.position).normalized;
                 playerRb.linearVelocity = directionToEntry * suctionForce;
-
-                if (!playingSound && Vector2.Distance(other.transform.position, entryPoint.position) < 1f)
-                {
-                    AudioManager.Instance.PlayLoopingSFX(airCurrentSound);
-                    playingSound = true;
-                }
 
                 if (Vector2.Distance(other.transform.position, entryPoint.position) < 0.5f)
                 {
@@ -54,9 +44,6 @@ public class AirCurrent : MonoBehaviour
             other.GetComponent<BubbleMovement>().canMove = true;
             isPlayerInCurrent = false;
             currentPathIndex = 0;
-
-            AudioManager.Instance.StopLoopingSFX();
-            playingSound = false;
         }
     }
 
@@ -70,12 +57,6 @@ public class AirCurrent : MonoBehaviour
 
             playerRb.linearVelocity = direction * transportSpeed;
 
-            if (!playingSound)
-            {
-                AudioManager.Instance.PlayLoopingSFX(airCurrentSound);
-                playingSound = true;
-            }
-
             if (Vector2.Distance(player.position, targetPosition) < 0.2f)
             {
                 currentPathIndex++;
@@ -88,12 +69,6 @@ public class AirCurrent : MonoBehaviour
         {
             Vector2 directionToExit = (exitPoint.position - player.position).normalized;
             playerRb.linearVelocity = directionToExit * suctionForce;
-
-            if (!playingSound)
-            {
-                AudioManager.Instance.PlayLoopingSFX(airCurrentSound);
-                playingSound = true;
-            }
         }
 
         isPlayerInCurrent = false;

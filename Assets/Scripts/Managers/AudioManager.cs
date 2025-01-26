@@ -6,12 +6,11 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource; 
-    [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private AudioSource loopingSFXSource;
+    [SerializeField] private AudioSource sfxSource;   
 
     [Header("Volume Settings")]
-    [Range(0f, 1f)] public float musicVolume = .5f; 
-    [Range(0f, 1f)] public float sfxVolume = .5f;   
+    [Range(0f, 1f)] public float musicVolume = 1f; 
+    [Range(0f, 1f)] public float sfxVolume = 1f;   
 
     private void Awake()
     {
@@ -28,7 +27,6 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.volume = musicVolume;
         sfxSource.volume = sfxVolume;
-        loopingSFXSource.volume = sfxVolume;
     }
 
     public void PlayMusic(AudioClip clip)
@@ -42,26 +40,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip, sfxVolume);
-    }
-
-    public void StopSFX()
-    {
-        sfxSource.Stop();
-        sfxSource.clip = null;
-    }
-
-    public void PlayLoopingSFX(AudioClip clip)
-    {
-        if (loopingSFXSource.clip == clip && loopingSFXSource.isPlaying) return; 
-        loopingSFXSource.clip = clip;
-        loopingSFXSource.loop = true;
-        loopingSFXSource.Play();
-    }
-
-    public void StopLoopingSFX()
-    {
-        loopingSFXSource.Stop();
-        loopingSFXSource.clip = null;
     }
 
     public void SetMusicVolume(float volume)
