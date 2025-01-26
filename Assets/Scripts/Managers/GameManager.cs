@@ -61,6 +61,12 @@ public class GameManager : MonoBehaviour
         else { UIManager.Instance.EasyPanel(); }
     }
 
+    public void OnVictory()
+    {
+        Time.timeScale = 0f;
+        UIManager.Instance.VictoryPanel();
+    }
+
     public void AddDeath(int quantity) 
     {
         playerLifes -= quantity; 
