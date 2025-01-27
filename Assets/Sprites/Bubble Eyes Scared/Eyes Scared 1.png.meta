@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 70020e20fbaa307479e8a72593a189b9
+guid: ee7d6d4c71efcef42822a895bfc5926e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4135211867677192569
-    second: Burbujiten_0
+      213: -8900604322462890572
+    second: Eyes Scared 1_0
   - first:
-      213: -5504298727822824455
-    second: Burbujiten_1
+      213: -9071660818903285211
+    second: Eyes Scared 1_1
   - first:
-      213: 8942618545298984653
-    second: Burbujiten_2
-  - first:
-      213: -223134919636139622
-    second: Burbujiten_3
+      213: 3390984228877830506
+    second: Eyes Scared 1_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -55,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,17 +102,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Burbujiten_0
+      name: Eyes Scared 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 294
-        height: 290
+        width: 77
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 78e0f1437b6cc96c0800000000000000
-      internalID: -4135211867677192569
+      spriteID: 4b50b41b683ba7480800000000000000
+      internalID: -8900604322462890572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burbujiten_1
+      name: Eyes Scared 1_1
       rect:
         serializedVersion: 2
-        x: 307
+        x: 85
         y: 0
-        width: 293
-        height: 293
+        width: 78
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9fb6c76587dcc93b0800000000000000
-      internalID: -5504298727822824455
+      spriteID: 522c0768c8cfa1280800000000000000
+      internalID: -9071660818903285211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burbujiten_2
+      name: Eyes Scared 1_2
       rect:
         serializedVersion: 2
-        x: 613
-        y: 0
-        width: 295
-        height: 289
+        x: 104
+        y: 72
+        width: 60
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,30 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dcecd5adf209a1c70800000000000000
-      internalID: 8942618545298984653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Burbujiten_3
-      rect:
-        serializedVersion: 2
-        x: 921
-        y: 0
-        width: 293
-        height: 293
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a914a1a09f347ecf0800000000000000
-      internalID: -223134919636139622
+      spriteID: a690731a0323f0f20800000000000000
+      internalID: 3390984228877830506
       vertices: []
       indices: 
       edges: []
@@ -200,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -209,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Eyes Scared 1_0: -8900604322462890572
+      Eyes Scared 1_1: -9071660818903285211
+      Eyes Scared 1_2: 3390984228877830506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
