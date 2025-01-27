@@ -1,8 +1,16 @@
+using System;
 using UnityEngine;
 
 public class Spine : MonoBehaviour
 {
-    [SerializeField] private int damage = 1; 
+    [SerializeField] private int damage = 1;
+    [SerializeField] float minTime;
+    private float lifeTime = 0f;
+
+    private void Update()
+    {
+        lifeTime += Time.deltaTime;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,7 +23,7 @@ public class Spine : MonoBehaviour
                 GameManager.Instance.OnPlayerDie();
             }
         }
-        else if (collision.CompareTag("Surface"))
+        else if (collision.CompareTag("Surface") && lifeTime > minTime)
         {
             Destroy(gameObject);
         }
