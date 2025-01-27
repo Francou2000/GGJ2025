@@ -27,10 +27,7 @@ public class GameManager : MonoBehaviour
                 player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
             }
         }
-        else 
-        { 
-            player.GetComponent<BubbleLives>().AddLife(playerLifes);
-        }
+        else player.GetComponent<BubbleLives>().AddLife(playerLifes);
     }
 
     private void Update() { elapsedTime += Time.deltaTime; }
@@ -69,8 +66,5 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.VictoryPanel();
     }
 
-    public void AddDeath(int quantity) 
-    {
-        playerLifes -= quantity; 
-    }
+    public void AddDeath(int quantity) { playerLifes -= quantity; }
 }
