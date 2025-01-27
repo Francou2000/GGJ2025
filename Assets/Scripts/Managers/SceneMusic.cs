@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.SceneManagement;
 
 
@@ -9,13 +10,16 @@ public class SceneMusic : MonoBehaviour
 
     private void Start()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
+        AudioManager.Instance.PlayMusic(menuMusic);
+    }
 
-        if (currentScene == "MainMenu")
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 0)
         {
             AudioManager.Instance.PlayMusic(menuMusic);
         }
-        else if (currentScene == "Nombre de la escena del gameplay")
+        else if (level == 1 || level == 2)
         {
             AudioManager.Instance.PlayMusic(gameplayMusic);
         }

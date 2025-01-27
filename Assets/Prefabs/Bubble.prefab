@@ -422,7 +422,7 @@ MonoBehaviour:
   cactusAndSurfaceMask:
     serializedVersion: 2
     m_Bits: 8
-  losRange: 5
+  losRange: 1.5
 --- !u!95 &7024885204883491660
 Animator:
   serializedVersion: 7
