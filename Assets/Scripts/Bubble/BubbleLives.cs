@@ -120,18 +120,18 @@ public class BubbleLives : MonoBehaviour
 
     private void CheckLineOfSight()
     {
-        int rayCount = 360; // Number of rays
+        int rayCount = 360; 
         float angleStep = 360f / rayCount;
         bool isInSight = false;
 
-        // If the player is hurt, prioritize the Hurt state
+
         if (currentLives < maxLives)
         {
             UpdateEyes(EyeState.Hurt);
-            return; // Skip the rest of the line of sight check if the player is hurt
+            return; 
         }
 
-        // Cast rays in a circular pattern
+
         for (int i = 0; i < rayCount; i++)
         {
             float angle = i * angleStep;
@@ -142,27 +142,26 @@ public class BubbleLives : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Cactus") || hit.collider.CompareTag("Surface"))
                 {
-                    UpdateEyes(EyeState.Scared); // Set to Scared state if there's an obstacle
+                    UpdateEyes(EyeState.Scared); 
                     isScared = true;
                     isInSight = true;
                     Debug.Log($"LoS with {hit.collider.name}");
-                    break; // Stop if any hit is found
+                    break; 
                 }
             }
         }
 
-        // If no obstacle is in sight, update to Idle or Hurt depending on the player's health
         if (!isInSight)
         {
-            if (currentLives == maxLives) // Ensure the player is at full health for idle
+            if (currentLives == maxLives) 
             {
-                if (isScared) // If player was scared, switch to Idle
+                if (isScared) 
                 {
                     UpdateEyes(EyeState.Idle);
-                    isScared = false; // Reset scared state when returning to idle
+                    isScared = false; 
                 }
             }
-            else if (!isScared) // If not full health, stay in Hurt state
+            else if (!isScared) 
             {
                 UpdateEyes(EyeState.Hurt);
             }
