@@ -6,6 +6,7 @@ public class FanArea : MonoBehaviour
     [SerializeField] private Vector2 pushDirection = Vector2.right; 
     [SerializeField] private float pushForce = 10f; 
     [SerializeField] private Vector2 areaSize = new Vector2(5f, 2f);
+    [SerializeField] private Vector2 areaOffset = new Vector2(2.5f, 0f);
     [SerializeField] private CircleCollider2D soundArea;
 
     private BoxCollider2D fanCollider;
@@ -14,7 +15,8 @@ public class FanArea : MonoBehaviour
     {
         fanCollider = GetComponent<BoxCollider2D>();
         fanCollider.isTrigger = true; 
-        fanCollider.size = areaSize; 
+        fanCollider.size = areaSize;
+        fanCollider.offset = areaOffset;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -32,6 +34,6 @@ public class FanArea : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(transform.position, areaSize);
+        Gizmos.DrawWireCube(transform.position + new Vector3(areaOffset.x, areaOffset.y, 0), areaSize);
     }
 }

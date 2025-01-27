@@ -8,7 +8,7 @@ public class CheckPoint : MonoBehaviour
         {
             SaveSystem.SaveGame(GameManager.Instance.GetPlayerLifes(), GameManager.Instance.GetTime(), GameManager.Instance.GetPlayer().transform.position);
             SaveSystem.SaveLevel(true);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

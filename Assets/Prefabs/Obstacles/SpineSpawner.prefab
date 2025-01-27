@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 241409742822911733}
   - component: {fileID: 7806718283702556238}
   - component: {fileID: 715210136044597113}
-  - component: {fileID: 4016393296292818593}
+  - component: {fileID: 6545350969634417306}
   m_Layer: 0
   m_Name: SpineSpawner
   m_TagString: Untagged
@@ -139,8 +139,8 @@ MonoBehaviour:
   spineSpeed: 5
   initialOffset: 0
   effectClip: {fileID: 8300000, guid: 749fe6a4761ad5942bb4381668bfdb2c, type: 3}
---- !u!58 &4016393296292818593
-CircleCollider2D:
+--- !u!61 &6545350969634417306
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -174,4 +174,14 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 7
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0

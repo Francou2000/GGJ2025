@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.44025147, g: 0.43609813, b: 0.43609813, a: 1}
+  m_Color: {r: 0.29125133, g: 0.698599, b: 0.7264151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   pushDirection: {x: 1, y: 0}
   pushForce: 10
   areaSize: {x: 9.43, y: 1.07}
+  areaOffset: {x: 2.5, y: 0}
   soundArea: {fileID: 0}
 --- !u!61 &704168221164016186
 BoxCollider2D:
