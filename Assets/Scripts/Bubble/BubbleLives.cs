@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BubbleLives : MonoBehaviour
 {
@@ -6,17 +7,25 @@ public class BubbleLives : MonoBehaviour
     [SerializeField] private int maxLives = 3; 
     [SerializeField] private float firstRegenTime = 4f; 
     [SerializeField] private float regenSpeedup = 2f;
+    [SerializeField] private AudioClip effectClip;
 
     [SerializeField] private int currentLives;
     private float regenTimer;
     private bool isRegenerating;
 
     private BubbleMovement bubbleMovement;
+    private Animator bubbleAnimator;
+    private Animator eyesAnimator;
 
     private Vector2 cactusCollisionPosition;
     private Vector2 surfaceCollisionPosition;
 
-    void Start() { bubbleMovement = GetComponent<BubbleMovement>(); }
+    void Start() 
+    { 
+        bubbleMovement = GetComponent<BubbleMovement>(); 
+        bubbleAnimator = GetComponent<Animator>();
+        eyesAnimator = GetComponentInChildren<Animator>();
+    }
 
     void Update()
     {
@@ -52,11 +61,13 @@ public class BubbleLives : MonoBehaviour
         {
             currentLives--;
 
+            eyesAnimator.SetBool("Hurt", true);
+
             GameManager.Instance.AddDeath(1);
 
             StartRegeneration();
 
-            if (currentLives <= 0) { GameManager.Instance.OnPlayerDie(); }
+            if (currentLives <= 0) { StartCoroutine(Death()); }
         }
     }
 
@@ -66,7 +77,11 @@ public class BubbleLives : MonoBehaviour
         regenTimer = firstRegenTime; 
     }
 
-    private void StopRegeneration() { isRegenerating = false; }
+    private void StopRegeneration() 
+    {
+        eyesAnimator.SetBool("Hurt", false);
+        isRegenerating = false; 
+    }
 
     private void RegenerateLife()
     {
@@ -75,8 +90,23 @@ public class BubbleLives : MonoBehaviour
             currentLives++;
             regenTimer = Mathf.Max(0.5f, regenTimer - regenSpeedup);
         }
-        if (currentLives == maxLives) { StopRegeneration(); }
+        if (currentLives == maxLives) 
+        { 
+            StopRegeneration(); 
+        }
     }
 
     public void AddLife(int quanity) { currentLives += quanity; }
+
+    private IEnumerator Death()
+    {
+        AudioManager.Instance.PlaySFX(effectClip);
+
+        bubbleAnimator.SetTrigger("Death");
+
+        yield return new WaitForSeconds(bubbleAnimator.GetCurrentAnimatorStateInfo(0).length);
+
+        GameManager.Instance.OnPlayerDie();
+    }
+
 }
