@@ -136,7 +136,7 @@ MonoBehaviour:
   spinePrefab: {fileID: 9057528593731436622, guid: 7bec58f72f42c1f4fb1a79008581ccb4, type: 3}
   spawnPoint: {fileID: 4391029438484722420}
   spawnFrequency: 1
-  spineSpeed: 5
+  spineSpeed: 4
   initialOffset: 0
   effectClip: {fileID: 8300000, guid: 749fe6a4761ad5942bb4381668bfdb2c, type: 3}
 --- !u!61 &6545350969634417306
