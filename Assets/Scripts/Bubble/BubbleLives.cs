@@ -38,6 +38,8 @@ public class BubbleLives : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject != gameObject) return;
+
         if (collision.gameObject.tag == "Cactus")
         {
             Debug.Log("ColisionCactus");
@@ -61,13 +63,19 @@ public class BubbleLives : MonoBehaviour
         {
             currentLives--;
 
+            AudioManager.Instance.PlaySFX(effectClip);
+
             eyesAnimator.SetBool("Hurt", true);
 
             GameManager.Instance.AddDeath(1);
 
             StartRegeneration();
 
-            if (currentLives <= 0) { StartCoroutine(Death()); }
+            if (currentLives <= 0) 
+            {
+                Debug.Log("Starting Death Coroutine");
+                StartCoroutine(Death());
+            }
         }
     }
 
@@ -100,8 +108,6 @@ public class BubbleLives : MonoBehaviour
 
     private IEnumerator Death()
     {
-        AudioManager.Instance.PlaySFX(effectClip);
-
         bubbleAnimator.SetTrigger("Death");
 
         yield return new WaitForSeconds(bubbleAnimator.GetCurrentAnimatorStateInfo(0).length);
