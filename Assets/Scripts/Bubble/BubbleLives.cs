@@ -13,7 +13,8 @@ public class BubbleLives : MonoBehaviour
 
     private BubbleMovement bubbleMovement;
 
-    private Vector2 collisionPosition;
+    private Vector2 cactusCollisionPosition;
+    private Vector2 surfaceCollisionPosition;
 
     void Start() { bubbleMovement = GetComponent<BubbleMovement>(); }
 
@@ -28,10 +29,20 @@ public class BubbleLives : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Cactus" || collision.gameObject.tag == "Surface")
+        if (collision.gameObject.tag == "Cactus")
         {
+            Debug.Log("ColisionCactus");
             LoseLife();
-            collisionPosition = collision.transform.position;
+            cactusCollisionPosition = collision.transform.position;
+            bubbleMovement.bounce(cactusCollisionPosition);
+        }
+
+        if (collision.gameObject.tag == "Surface")
+        {
+            Debug.Log("ColisionSurface");
+            LoseLife();
+            surfaceCollisionPosition = collision.ClosestPoint(transform.position);
+            bubbleMovement.bounce(surfaceCollisionPosition);
         }
     }
 
@@ -42,8 +53,6 @@ public class BubbleLives : MonoBehaviour
             currentLives--;
 
             GameManager.Instance.AddDeath(1);
-
-            bubbleMovement.bounce(collisionPosition);
 
             StartRegeneration();
 

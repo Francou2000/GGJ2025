@@ -8,15 +8,15 @@ public class BubbleMovement : MonoBehaviour
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float moveDelay = 0.1f;
     [SerializeField] private float interval = 0.1f;
-    [SerializeField] private float erraticForce = 0.8f;
-    [SerializeField] private float enableDelay = 2f;
+    [SerializeField] private float erraticForce = 1.5f;
+    [SerializeField] private float enableDelay = 1.1f;
 
     private Rigidbody2D rb;
     private float lastMoveTime;
     public bool canMove = true;
 
     private Vector2 bounceDirection;
-    [SerializeField] private float repellentForce = 10f;
+    [SerializeField] private float repellentForce = 250f;
 
     private Vector2 currentBubbleForce;
     [SerializeField] private float resistanceCoefficent = 1.2f;
@@ -29,6 +29,7 @@ public class BubbleMovement : MonoBehaviour
 
         StartCoroutine(ErraticMovement());
     }
+
     private void FixedUpdate()
     {
         Move();
@@ -47,11 +48,6 @@ public class BubbleMovement : MonoBehaviour
                 Vector2 direction = new Vector2(horizontal, vertical).normalized;
 
                 rb.AddForce(direction * moveForce, ForceMode2D.Impulse);
-
-                if (rb.linearVelocity.magnitude > maxSpeed)
-                {
-                    rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
-                }
 
                 lastMoveTime = Time.time;
             }
@@ -101,7 +97,7 @@ public class BubbleMovement : MonoBehaviour
         
         bounceDirection = (transform.position - (Vector3)collisionPosition).normalized;
 
-        rb.linearVelocity *= 0.5f;
+        rb.linearVelocity = Vector2.zero;
         
         rb.AddForce(bounceDirection * repellentForce, ForceMode2D.Impulse);
 
@@ -119,7 +115,8 @@ public class BubbleMovement : MonoBehaviour
 
         if (actualSpeed > 0)
         {
-            rb.linearDamping = actualSpeed + resistanceCoefficent;
+            //rb.linearDamping = actualSpeed + resistanceCoefficent;
+            rb.linearDamping = Mathf.Clamp(0.5f, (actualSpeed + resistanceCoefficent), 4f);
         }
     }
 }
