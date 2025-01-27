@@ -15,5 +15,10 @@ public class Spine : MonoBehaviour
                 GameManager.Instance.OnPlayerDie();
             }
         }
+        else if (collision.CompareTag("Surface"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
+

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wall Down Left Big Corner 1_0: -1843157750076017866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
