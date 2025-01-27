@@ -2973,6 +2973,7 @@ MonoBehaviour:
   maxLives: 3
   firstRegenTime: 4
   regenSpeedup: 2
+  effectClip: {fileID: 0}
   currentLives: 0
 --- !u!58 &163376602
 CircleCollider2D:
@@ -23306,10 +23307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1071481487}
-  bouncesSprites: []
-  bouncesContainer: {fileID: 1326249730}
   canvas: {fileID: 999202975}
-  bounceSpritePrefab: {fileID: 3837365559219281766, guid: 5d7d204776156a4459269f553afbdaab, type: 3}
   pausePanelPrefab: {fileID: 2338803350538449787, guid: 69e04bb8cfa68d44981f10ea183eb127, type: 3}
   easyPanelPrefab: {fileID: 2338803350538449787, guid: cea4c51dfbabedc44b121247581141d3, type: 3}
   victoryPanelPrefab: {fileID: 7388553866745704210, guid: 9ba3e414586db6a46a1d832e316aa54e, type: 3}

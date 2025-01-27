@@ -24,13 +24,11 @@ public class GameManager : MonoBehaviour
                 playerLifes = loadedData.lives;
                 elapsedTime = loadedData.time;
                 player.transform.position = loadedData.GetPosition();
-                UIManager.Instance.RestartBounds(playerLifes);
                 player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
             }
         }
         else 
         { 
-            for (int i = 0; i < playerLifes; i++) { UIManager.Instance.AddBounds(); }
             player.GetComponent<BubbleLives>().AddLife(playerLifes);
         }
     }
@@ -56,7 +54,6 @@ public class GameManager : MonoBehaviour
             playerLifes = loadedData.lives;
             elapsedTime = loadedData.time;
             player.transform.position = loadedData.GetPosition();
-            UIManager.Instance.RestartBounds(playerLifes);
             player.GetComponent<BubbleLives>().AddLife(loadedData.lives);
         }
         else 
@@ -75,6 +72,5 @@ public class GameManager : MonoBehaviour
     public void AddDeath(int quantity) 
     {
         playerLifes -= quantity; 
-        UIManager.Instance.RemoveBounds();
     }
 }

@@ -7,10 +7,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private List<GameObject> bouncesSprites;
-    [SerializeField] private GameObject bouncesContainer, canvas;
+    [SerializeField] private GameObject canvas;
     [Header("Prefabs")]
-    [SerializeField] private GameObject bounceSpritePrefab, pausePanelPrefab, easyPanelPrefab, victoryPanelPrefab;
+    [SerializeField] private GameObject pausePanelPrefab, easyPanelPrefab, victoryPanelPrefab;
     private GameObject pausePanelInstance;
     private GameObject easyPanelInstance;
     private GameObject victoryPanelInstance;
@@ -60,7 +59,7 @@ public class UIManager : MonoBehaviour
     {
         if (victoryPanelInstance == null)
         {
-            victoryPanelInstance = Instantiate(victoryPanelPrefab,canvas.transform);
+            victoryPanelInstance = Instantiate(victoryPanelPrefab, canvas.transform);
             Time.timeScale = 0f;
         }
         else
@@ -68,34 +67,6 @@ public class UIManager : MonoBehaviour
             Destroy(victoryPanelInstance);
             victoryPanelInstance = null;
             Time.timeScale = 1f;
-        }
-    }
-
-    public void RemoveBounds()
-    {
-        if (bouncesSprites.Count > 0)
-        {
-            GameObject lastImage = bouncesSprites[bouncesSprites.Count - 1];
-            Destroy(lastImage);
-            bouncesSprites.RemoveAt(bouncesSprites.Count - 1);
-        }
-    }
-
-    public void AddBounds()
-    {
-        GameObject newBound = Instantiate(bounceSpritePrefab, bouncesContainer.transform);
-        bouncesSprites.Add(newBound);
-    }
-
-    public void RestartBounds(int lifes)
-    {
-        foreach (GameObject bound in bouncesSprites) { Destroy(bound); }
-        bouncesSprites.Clear();
-
-        for (int i = 0; i < lifes; i++)
-        {
-            GameObject newBound = Instantiate(bounceSpritePrefab, bouncesContainer.transform);
-            bouncesSprites.Add(newBound);
         }
     }
 

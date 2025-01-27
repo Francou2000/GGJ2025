@@ -115,7 +115,6 @@ public class BubbleMovement : MonoBehaviour
 
         if (actualSpeed > 0)
         {
-            //rb.linearDamping = actualSpeed + resistanceCoefficent;
             rb.linearDamping = Mathf.Clamp(0.5f, (actualSpeed + resistanceCoefficent), 4f);
         }
     }
