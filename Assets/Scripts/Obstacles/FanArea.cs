@@ -30,10 +30,4 @@ public class FanArea : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(transform.position + new Vector3(areaOffset.x, areaOffset.y, 0), areaSize);
-    }
 }

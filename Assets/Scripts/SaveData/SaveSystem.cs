@@ -20,7 +20,6 @@ public static class SaveSystem
         string json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(saveFilePath, json);
-        Debug.Log("Data saved: " + saveFilePath);
     }
 
     public static void SaveLevel(bool chickenMode)
@@ -33,7 +32,6 @@ public static class SaveSystem
         string json = JsonUtility.ToJson(levelData, true);
 
         File.WriteAllText(levelFilePath, json);
-        Debug.Log("Level data saved: " + levelFilePath);
     }
 
     public static SaveData LoadGame()
@@ -43,7 +41,6 @@ public static class SaveSystem
             string json = File.ReadAllText(saveFilePath);
 
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            Debug.Log("Data loaded from: " + saveFilePath);
             return data;
         }
         else return null;
@@ -56,7 +53,6 @@ public static class SaveSystem
             string json = File.ReadAllText(levelFilePath);
 
             LevelData levelData = JsonUtility.FromJson<LevelData>(json);
-            Debug.Log("Level data loaded from: " + levelFilePath);
             return levelData;
         }
         else return null;
@@ -67,12 +63,10 @@ public static class SaveSystem
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);
-            Debug.Log("Game data deleted");
         }
         if (File.Exists(levelFilePath))
         {
             File.Delete(levelFilePath);
-            Debug.Log("Level data deleted");
         }
     }
 }

@@ -60,22 +60,4 @@ public class CameraController : MonoBehaviour
                playerPosition.y >= currentScreenCenter.y - halfHeight &&
                playerPosition.y <= currentScreenCenter.y + halfHeight;
     }
-
-    private void OnDrawGizmos()
-    {
-        if (screenSize == Vector2.zero) return;
-
-        /*Gizmos.color = Color.green;
-        for (float x = -100; x <= 100; x += screenSize.x)
-        {
-            Gizmos.DrawLine(new Vector3(x, -100, 0), new Vector3(x, 100, 0));
-        }
-        for (float y = -100; y <= 100; y += screenSize.y)
-        {
-            Gizmos.DrawLine(new Vector3(-100, y, 0), new Vector3(100, y, 0));
-        }*/
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(new Vector3(currentScreenCenter.x, currentScreenCenter.y, 0), new Vector3(screenSize.x, screenSize.y, 0));
-    }
 }

@@ -76,29 +76,4 @@ public class AirCurrent : MonoBehaviour
 
         isPlayerInCurrent = false;
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        for (int i = 0; i < pathPoints.Length - 1; i++)
-        {
-            if (pathPoints[i] != null && pathPoints[i + 1] != null)
-            {
-                Gizmos.DrawLine(pathPoints[i].position, pathPoints[i + 1].position);
-                Gizmos.DrawSphere(pathPoints[i].position, 0.2f);
-            }
-        }
-
-        if (entryPoint != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(entryPoint.position, 0.5f);
-        }
-
-        if (exitPoint != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(exitPoint.position, 0.5f);
-        }
-    }
 }

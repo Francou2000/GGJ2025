@@ -51,7 +51,6 @@ public class BubbleLives : MonoBehaviour
     {
         if (collision.gameObject.tag == "Cactus")
         {
-            Debug.Log("ColisionCactus");
             LoseLife();
             cactusCollisionPosition = collision.transform.position;
             bubbleMovement.bounce(cactusCollisionPosition);
@@ -59,7 +58,6 @@ public class BubbleLives : MonoBehaviour
 
         if (collision.gameObject.tag == "Surface")
         {
-            Debug.Log("ColisionSurface");
             LoseLife();
             surfaceCollisionPosition = collision.ClosestPoint(transform.position);
             bubbleMovement.bounce(surfaceCollisionPosition);
@@ -145,7 +143,6 @@ public class BubbleLives : MonoBehaviour
                     UpdateEyes(EyeState.Scared); 
                     isScared = true;
                     isInSight = true;
-                    Debug.Log($"LoS with {hit.collider.name}");
                     break; 
                 }
             }
@@ -195,22 +192,5 @@ public class BubbleLives : MonoBehaviour
                 eyesScared.SetActive(false);
                 break;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        int rayCount = 360; 
-        float angleStep = 360f / rayCount;
-        Gizmos.color = isScared ? Color.red : Color.green;
-
-
-        for (int i = 0; i < rayCount; i++)
-        {
-            float angle = i * angleStep;
-            Vector2 direction = new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle));
-            Gizmos.DrawLine(transform.position, transform.position + (Vector3)direction * losRange);
-        }
-       
-        Gizmos.DrawWireSphere(transform.position, 0.2f);
     }
 }
